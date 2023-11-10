@@ -31,7 +31,7 @@ function Header() {
 
     return (
         <div id="app">
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+            <nav className="navbar navbar-expand-md navbar-dark shadow-sm" style={{background:" #722FF9"}}>
                 <div className="container">
                     <a className="navbar-brand" href="/user">
                         Product Feedback Tool
@@ -51,16 +51,17 @@ function Header() {
                         className="collapse navbar-collapse"
                         id="navbarSupportedContent"
                     >
-                        <ul className="navbar-nav me-auto"></ul>
+                        <ul className="navbar-nav me-auto" ></ul>
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="/user">
-                                    Feedbacks
+                                <a className="nav-link" style={{color:"white"}} href="/user">
+                                   Product Feedbacks
                                 </a>
                             </li>
                             <li className="nav-item">
                                 <a
                                     className="nav-link"
+                                    style={{color:"white"}}
                                     href="/user/feedback/create"
                                 >
                                     Submit Feedback
@@ -70,6 +71,7 @@ function Header() {
                                 <a
                                     className="nav-link"
                                     href="#"
+                                    style={{color:"white"}}
                                     onClick={logout}
                                 >
                                     Logout

@@ -50,11 +50,11 @@ function Feedback({ feedback, onClose }) {
     })
       .then((response) => {
         if (response.ok) {
-          toast.success("Vote Submitted Successfully!", {
+          toast.success("Vote has Submitted Successfully!", {
             position: toast.POSITION.TOP_RIGHT,
           });
         } else {
-          toast.error("You have already submitted the vote!", {
+          toast.error("Your vote is  already submitted!", {
             position: toast.POSITION.TOP_RIGHT,
           });
         }
@@ -86,7 +86,7 @@ function Feedback({ feedback, onClose }) {
               position: toast.POSITION.TOP_RIGHT,
             });
           } else {
-            toast.error("Admin has turned off comments!", {
+            toast.error("You cannot comment right now ", {
               position: toast.POSITION.TOP_RIGHT,
             });
           }
@@ -109,7 +109,7 @@ function Feedback({ feedback, onClose }) {
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex align-items-center gap-3">
               <h5 className="m-0">Category:</h5>
-              <Badge bg="success">{feedback?.category}</Badge>
+              <Badge bg="primary">{feedback?.category}</Badge>
             </div>
             <Button variant="secondary" size="sm" onClick={submitVote}>
               Vote
@@ -142,7 +142,7 @@ function Feedback({ feedback, onClose }) {
             </div>
           </div>
           <div className="d-flex justify-content-center mb-3">
-            <Button variant="success" onClick={submitComment}>
+            <Button variant="primary my-2" onClick={submitComment}>
               Submit
             </Button>
           </div>

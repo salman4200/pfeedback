@@ -43,13 +43,13 @@ function FeedbacksList() {
             <div className="d-flex justify-content-center my-5">
                 <div className="col-md-10 col-sm-12 px-5">
                     <h2>Feedbacks List</h2>
-                    <Table striped bordered hover className="my-3">
+                    <Table striped bordered hover className="my-5">
                         <thead>
                             <tr>
                                 <th>Title</th>
                                 <th>Category</th>
                                 <th>Votes</th>
-                                <th>Author</th>
+                                <th>User</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,7 +59,7 @@ function FeedbacksList() {
                                     <tr key={feedback?.id}>
                                         <td>{feedback?.title}</td>
                                         <td>
-                                            <Badge bg="success">
+                                            <Badge bg="primary">
                                                 {feedback?.category}
                                             </Badge>
                                         </td>
@@ -68,46 +68,38 @@ function FeedbacksList() {
                                         </td>
                                         <td>{feedback?.user.name}</td>
                                         <td>
-                                            <Button size="sm" variant="primary" onClick={() => {viewFeedback(feedback)}}>
+                                            <Button size="md"  variant="secondary" onClick={() => {viewFeedback(feedback)}}>
                                                 View
                                             </Button>
+                                            
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="3">Loading...</td>
+                                    <td colSpan="4">Loading...</td>
                                 </tr>
                             )}
                         </tbody>
                     </Table>
-                    <div className="d-flex justify-content-center">
-                        <Pagination
-                            activePage={
-                                list?.feedbacks?.current_page
-                                    ? list?.feedbacks?.current_page
-                                    : 0
-                            }
-                            itemsCountPerPage={
-                                list?.feedbacks?.per_page
-                                    ? list?.feedbacks?.per_page
-                                    : 0
-                            }
-                            totalItemsCount={
-                                list?.feedbacks?.total
-                                    ? list?.feedbacks?.total
-                                    : 0
-                            }
-                            onChange={(pageNumber) => {
-                                fetchData(pageNumber);
-                            }}
-                            pageRangeDisplayed={8}
-                            itemClass="page-item"
-                            linkClass="page-link"
-                            firstPageText="First Page"
-                            lastPageText="Last Lage"
-                        />
-                    </div>
+                    <div className="d-flex justify-content-center my-4">
+  <nav aria-label="Page navigation">
+    <ul className="pagination">
+      <li className={`page-item ${list?.feedbacks?.current_page === 1 && 'disabled'}`}>
+        <button className="page-link" onClick={() => fetchData(1)}>First</button>
+      </li>
+      {Array.from({ length: list?.feedbacks?.total_pages }, (_, index) => (
+        <li key={index} className={`page-item ${list?.feedbacks?.current_page === index + 1 && 'active'}`}>
+          <button className="page-link" onClick={() => fetchData(index + 1)}>{index + 1}</button>
+        </li>
+      ))}
+      <li className={`page-item ${list?.feedbacks?.current_page === list?.feedbacks?.total_pages && 'disabled'}`}>
+        <button className="page-link" onClick={() => fetchData(list?.feedbacks?.total_pages)}>Last</button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
                     {showFeedback && (
                         <Feedback
                             feedback={selectedFeedback}
